@@ -1,1 +1,1 @@
-# pyuniq-demo
+# my-python-uniq
