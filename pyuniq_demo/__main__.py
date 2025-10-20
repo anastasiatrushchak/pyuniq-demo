@@ -16,7 +16,6 @@ def pyuniq(count, ignore_case, input_file):
     def format_line(line_text, current_count):
         """Форматує вивід з лічильником або без."""
         if count:
-            # Вирівнюємо лічильник для красивого виводу
             return f"{current_count: >7} {line_text}"
         return line_text
 
@@ -29,22 +28,17 @@ def pyuniq(count, ignore_case, input_file):
     try:
         for line in input_file:
             if prev_line is None:
-                # Це перший рядок
                 prev_line = line
                 line_count = 1
                 continue
 
             if compare_lines(line, prev_line):
-                # Рядок такий самий, як попередній
                 line_count += 1
             else:
-                # Рядок змінився, друкуємо попередню групу
                 click.echo(format_line(prev_line, line_count), nl=False)
-                # і починаємо нову групу
                 prev_line = line
                 line_count = 1
         
-        # Не забути вивести останню групу рядків після завершення файлу
         if prev_line is not None:
              click.echo(format_line(prev_line, line_count), nl=False)
 
